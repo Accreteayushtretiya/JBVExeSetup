@@ -2,8 +2,11 @@
 /node_modules
 
 # Build output
-/dist
+dist*/
 /output
+
+# Print server lib
+print-server/lib/
 
 # Operating System files
 .DS_Store

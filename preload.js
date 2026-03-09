@@ -1,10 +1,10 @@
-// Preload script for Electron
-// This runs before your React app loads and has access to Node.js APIs
+const { contextBridge, ipcRenderer } = require('electron');
 
-const { contextBridge } = require('electron');
-
-// Expose any APIs you need to the renderer process here
 contextBridge.exposeInMainWorld('electronAPI', {
   platform: process.platform,
-  // Add more APIs as needed
+  print: {
+    checkConnection: () => ipcRenderer.invoke('print:check-connection'),
+    printLabel: (labelData) => ipcRenderer.invoke('print:label', labelData),
+    printCartonLabel: (data) => ipcRenderer.invoke('print:carton-label', data),
+  }
 });
